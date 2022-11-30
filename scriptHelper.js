@@ -17,26 +17,19 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 }
 
 function validateInput(testInput) {
-    if(testInput === null) {
-        console.log("Epmty"); 
-    } else if (isNaN(testInput)===true) {
+    let pilotInput = document.formField.pilotName
+
+    if(pilotInput === null) {
+        console.log("Empty"); 
+    } else if (isNaN(pilotInput) === true) {
         console.log("Not a Number");
-    } else if (testInput === Number){ 
+    } else { (pilotInput === Number) 
         console.log("Is a Number");
     }
-}   
-
+};
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-    if (pilot !== String) {
-        validateInput(pilot)
-    } else if (copilot !== String) {
-        validateInput(copilot)
-    } else if (fuelLevel !== Number) {
-        validateInput(fuelLevel) 
-    } else if (cargoLevel !== Number) {
-        validateInput(cargoLevel)
-    }
+    
 }
 
 async function myFetch() {
@@ -46,6 +39,7 @@ async function myFetch() {
         });
 
     return planetsReturned;
+    console.log(planetsReturned);
 }
 
 function pickPlanet(planets) {
