@@ -1,12 +1,18 @@
 // Write your JavaScript code here!
 
-const { pickPlanet } = require("./scriptHelper");
+const { pickPlanet, myFetch } = require("./scriptHelper");
 
 window.addEventListener("load", function() {
-    fetch(https://handlers.education.launchcode.org/static/planets.json).then    
+    fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response) {
+        response.json().then(function(data) {
+            console.log(data);
+        })
+    });
+})   
+
    let listedPlanets;
    // Set listedPlanetsResponse equal to the value returned by calling myFetch()
-   let listedPlanetsResponse;
+   let listedPlanetsResponse = myFetch()
    listedPlanetsResponse.then(function (result) {
        listedPlanets = result;
        console.log(listedPlanets);
