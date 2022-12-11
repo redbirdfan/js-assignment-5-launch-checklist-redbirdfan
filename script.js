@@ -1,24 +1,33 @@
-// Write your JavaScript code here!
+/*const { myFetch, pickPlanet, addDestinationInfo, formSubmission } = require("./scriptHelper");
 
-const { pickPlanet, myFetch } = require("./scriptHelper");
+const { nodeDetachedFromDocument } = require("jsdom/lib/jsdom/living/named-properties-window");
 
-window.addEventListener("load", function() {
-    fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response) {
-        response.json().then(function(data) {
-            console.log(data);
-        })
-    });
-})   
+const { formSubmission } = require("./scriptHelper");*/
 
-   let listedPlanets;
-   // Set listedPlanetsResponse equal to the value returned by calling myFetch()
-   let listedPlanetsResponse;
 
-   listedPlanetsResponse.then(function (result) {
-       listedPlanets = result;
-       console.log(listedPlanets);
-   }).then(function () {
-       console.log(listedPlanets);
-       // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
-        pickPlanet ()
-   });
+window.addEventListener("load", function(){
+
+
+    let listedPlanets;
+
+//Set listedPlanetsResponse equal to the value returned by calling myFetch()
+    let listedPlanetsResponse = myFetch();
+        listedPlanetsResponse.then(function(result){
+            listedPlanets = result;
+            console.log("listedPlanets");
+    }).then(function() {
+        console.log(listedPlanets);
+        let myPlanet = pickPlanet("listedPlanets");
+        addDestinationInfo(document, myPlanet.name, myPlanet.diameter, myPlanet.star, myPlanet.distance, myPlanet.moons, myPlanet.image) 
+    })
+    
+    })
+        
+      
+
+    formSubmission();
+    console.log(pilotStatus)  
+
+      
+
+
