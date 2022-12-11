@@ -4,6 +4,8 @@ const { nodeDetachedFromDocument } = require("jsdom/lib/jsdom/living/named-prope
 
 const { formSubmission } = require("./scriptHelper");*/
 
+const { formSubmission } = require("./scriptHelper");
+
 
 window.addEventListener("load", function(){
 
@@ -20,14 +22,17 @@ window.addEventListener("load", function(){
         let myPlanet = pickPlanet("listedPlanets");
         addDestinationInfo(document, myPlanet.name, myPlanet.diameter, myPlanet.star, myPlanet.distance, myPlanet.moons, myPlanet.image) 
     })
-    
-    })
-        
-      
 
-    formSubmission();
-    console.log(pilotStatus)  
-
-      
-
-
+    let button = document.getElementById("formSubmit");
+    button.addEventListener("click", function() {
+        let pilotInput = document.getElementById("input[name=pilotName]");
+        console.log(pilotInput.value);
+        let copilotInput = document.getElementById("input[name=copilotName]");
+        console.log(copilotInput.value);
+        let fuelInput = document.getElementById("input[name=fuelLevel]");
+        console.log(fuelInput.value);
+        let cargoInput = document.getElementById("input[name=cargoMass]");
+        console.log(cargoInput.value)
+        formSubmission()
+     })
+    });
