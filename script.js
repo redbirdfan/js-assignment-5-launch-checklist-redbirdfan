@@ -2,37 +2,38 @@
 
 const { nodeDetachedFromDocument } = require("jsdom/lib/jsdom/living/named-properties-window");
 
-const { formSubmission } = require("./scriptHelper");*/
-
 const { formSubmission } = require("./scriptHelper");
 
+const { formSubmission } = require("./scriptHelper");
+*/
 
-window.addEventListener("load", function(){
-
+window.addEventListener("load", function() {
+    let form = document.querySelector("form");
 
     let listedPlanets;
 
 //Set listedPlanetsResponse equal to the value returned by calling myFetch()
     let listedPlanetsResponse = myFetch();
-        listedPlanetsResponse.then(function(result){
+        listedPlanetsResponse.then(function(result) {
             listedPlanets = result;
-            console.log("listedPlanets");
+            console.log(listedPlanets);
     }).then(function() {
-        console.log(listedPlanets);
-        let myPlanet = pickPlanet("listedPlanets");
+        let myPlanet = pickPlanet(listedPlanets);
         addDestinationInfo(document, myPlanet.name, myPlanet.diameter, myPlanet.star, myPlanet.distance, myPlanet.moons, myPlanet.image) 
     })
 
-    let button = document.getElementById("formSubmit");
-    button.addEventListener("click", function() {
-        let pilotInput = document.getElementById("input[name=pilotName]");
-        console.log(pilotInput.value);
-        let copilotInput = document.getElementById("input[name=copilotName]");
-        console.log(copilotInput.value);
-        let fuelInput = document.getElementById("input[name=fuelLevel]");
-        console.log(fuelInput.value);
-        let cargoInput = document.getElementById("input[name=cargoMass]");
-        console.log(cargoInput.value)
-        formSubmission()
+    form.addEventListener("submit", function(event) {
+        
+        let pilot = document.querySelector("input[name=pilotName]").value;
+        console.log(pilot.value);
+        let copilot = document.querySelector("input[name=copilotName]").value;
+        console.log(copilot.value);
+        let fuel = document.querySelector("input[name=fuelLevel]").value;
+        console.log(fuel.value);
+        let cargo = document.querySelector("input[name=cargoMass]").value;
+        console.log(cargo.value)
+        let list = document.getElementById("faultyItems");
+        formSubmission(document, list, pilot, copilot, fuel, cargo);
+        event.preventDefault();
      })
     });
